@@ -3,48 +3,445 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const orgSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: 'Avery Stone Studio',
+	description: SITE_DESCRIPTION,
+	url: 'https://example.com',
+	serviceType: ['3D Product Visualization', 'Creative Direction', 'Landing Page Design'],
+	areaServed: 'Global',
+	slogan: 'Premium 3D visuals for brands that need to convert trust quickly.',
+};
+
+const faqSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: [
+		{
+			'@type': 'Question',
+			name: 'How fast can you start?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Most projects start within one week after scope approval and asset handoff.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Do you only work on 3D visuals?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'No. I pair 3D design with conversion-focused landing page strategy and execution.',
+			},
+		},
+		{
+			'@type': 'Question',
+			name: 'Can you work with an existing brand team?',
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: 'Yes. I can plug into your current design and marketing workflow as a senior specialist partner.',
+			},
+		},
+	],
+};
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} image="/blog-placeholder-about.jpg" />
+		<script type="application/ld+json" set:html={JSON.stringify(orgSchema)}></script>
+		<script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+			<section class="hero" id="top">
+				<p class="eyebrow">3D Visualization • Creative Direction • Conversion UX</p>
+				<h1>I create cinematic product visuals that help premium brands close faster.</h1>
+				<p class="hero-copy">
+					I partner with founders and marketing teams to produce elegant 3D content and landing page
+					experiences that build trust in under 10 seconds.
+				</p>
+				<div class="hero-ctas">
+					<a class="button primary" href="#contact">Book a Discovery Call</a>
+					<a class="button secondary" href="#work">See Selected Work</a>
+				</div>
+				<ul class="metrics" aria-label="Business outcomes">
+					<li><strong>+38%</strong> average lift in product page engagement</li>
+					<li><strong>72h</strong> rapid concept sprint turnaround</li>
+					<li><strong>15+</strong> high-ticket brands supported globally</li>
+				</ul>
+			</section>
+
+			<section id="services" class="panel">
+				<div class="section-head">
+					<p class="eyebrow">Services</p>
+					<h2>End-to-end visual systems for launch moments.</h2>
+				</div>
+				<div class="grid three">
+					<article>
+						<h3>3D Product Visualization</h3>
+						<p>
+							Photoreal renders and motion sequences for ecommerce, ads, and investor decks.
+						</p>
+					</article>
+					<article>
+						<h3>Landing Experience Design</h3>
+						<p>
+							Conversion-first page architecture with premium editorial feel and fast performance.
+						</p>
+					</article>
+					<article>
+						<h3>Creative Direction</h3>
+						<p>
+							Narrative framing, art direction, and rollout plans for cohesive campaign execution.
+						</p>
+					</article>
+				</div>
+			</section>
+
+			<section id="work" class="panel">
+				<div class="section-head">
+					<p class="eyebrow">Selected Work</p>
+					<h2>Proof of concept pieces built for commercial outcomes.</h2>
+				</div>
+				<div class="grid work-grid">
+					<article class="work-card">
+						<img src="/blog-placeholder-1.jpg" alt="Luxury cosmetic bottle render" loading="lazy" />
+						<div>
+							<h3>Serum Launch Film</h3>
+							<p>Helped a DTC beauty launch exceed preorder target by 24% in 10 days.</p>
+						</div>
+					</article>
+					<article class="work-card">
+						<img src="/blog-placeholder-2.jpg" alt="Premium headphone product composition" loading="lazy" />
+						<div>
+							<h3>Hardware Product Reveal</h3>
+							<p>Created a modular visual kit reused across paid and organic campaigns.</p>
+						</div>
+					</article>
+					<article class="work-card">
+						<img src="/blog-placeholder-3.jpg" alt="Skincare packaging exploration" loading="lazy" />
+						<div>
+							<h3>Skincare Visual Refresh</h3>
+							<p>Elevated perceived brand value with cohesive visual storytelling and UI polish.</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section id="process" class="panel">
+				<div class="section-head">
+					<p class="eyebrow">Process</p>
+					<h2>A clear process that protects quality and speed.</h2>
+				</div>
+				<ol class="steps">
+					<li><strong>1. Strategy Sprint:</strong> outcomes, audience, offer, and creative constraints.</li>
+					<li><strong>2. Concept & Direction:</strong> visual territories, references, and messaging system.</li>
+					<li><strong>3. Production:</strong> renders, motion, and landing page execution with QA loops.</li>
+					<li><strong>4. Launch Support:</strong> optimization for performance, SEO, and conversion tracking.</li>
+				</ol>
+			</section>
+
+			<section id="faq" class="panel">
+				<div class="section-head">
+					<p class="eyebrow">FAQ</p>
+					<h2>Answers before we start.</h2>
+				</div>
+				<div class="faq-items">
+					<details>
+						<summary>What project sizes are the best fit?</summary>
+						<p>
+							Best fit is brand teams launching new products, campaign pages, or visual refreshes with a
+							clear conversion goal.
+						</p>
+					</details>
+					<details>
+						<summary>Do you work asynchronously?</summary>
+						<p>Yes. Most communication is async with one focused weekly sync.</p>
+					</details>
+					<details>
+						<summary>Can you collaborate with my existing developers?</summary>
+						<p>Absolutely — handoff is structured, with reusable component and asset specs.</p>
+					</details>
+				</div>
+			</section>
+
+			<section id="contact" class="panel contact">
+				<div class="section-head">
+					<p class="eyebrow">Contact</p>
+					<h2>Tell me your launch goal. I’ll reply within one business day.</h2>
+				</div>
+				<form id="contact-form" novalidate>
+					<input class="sr-only" type="text" name="website" tabindex="-1" autocomplete="off" />
+					<label>
+						Name
+						<input required name="name" type="text" minlength="2" maxlength="80" />
+					</label>
+					<label>
+						Email
+						<input required name="email" type="email" maxlength="120" />
+					</label>
+					<label>
+						Project Brief
+						<textarea
+							required
+							name="message"
+							minlength="20"
+							maxlength="2000"
+							rows="5"
+							placeholder="Timeline, budget range, goals, and what success looks like."
+						></textarea>
+					</label>
+					<button type="submit">Send Inquiry</button>
+					<p id="form-status" aria-live="polite"></p>
+				</form>
+			</section>
 		</main>
 		<Footer />
+		<script>
+			const form = document.querySelector('#contact-form');
+			const status = document.querySelector('#form-status');
+
+			if (form instanceof HTMLFormElement && status instanceof HTMLElement) {
+				form.addEventListener('submit', async (event) => {
+					event.preventDefault();
+					if (!form.reportValidity()) return;
+
+					status.textContent = 'Sending…';
+					const formData = new FormData(form);
+					const payload = Object.fromEntries(formData.entries());
+
+					try {
+						const response = await fetch('/api/contact', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(payload),
+						});
+
+						if (!response.ok) {
+							status.textContent = 'Submission failed. Please try again in a moment.';
+							return;
+						}
+
+						form.reset();
+						status.textContent = 'Thanks — your inquiry has been sent.';
+					} catch {
+						status.textContent = 'Network issue. Please email hello@example.com directly.';
+					}
+				});
+			}
+		</script>
 	</body>
 </html>
+
+<style>
+	.hero {
+		display: grid;
+		gap: 1.2rem;
+		padding: 2rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 26px;
+		background: linear-gradient(140deg, rgba(29, 38, 58, 0.8), rgba(14, 19, 32, 0.95));
+	}
+
+	.eyebrow {
+		font-size: 0.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.09em;
+		font-weight: 700;
+		color: #9bb3ff;
+	}
+
+	.hero h1 {
+		font-size: clamp(2rem, 5vw, 3.9rem);
+		max-width: 16ch;
+	}
+
+	.hero-copy {
+		max-width: 56ch;
+		color: rgba(235, 242, 255, 0.82);
+	}
+
+	.hero-ctas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.8rem;
+	}
+
+	.button {
+		text-decoration: none;
+		padding: 0.7rem 1.1rem;
+		border-radius: 999px;
+		font-weight: 700;
+	}
+
+	.button.primary {
+		background: linear-gradient(120deg, var(--accent), var(--accent-2));
+		color: #070a11;
+	}
+
+	.button.secondary {
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		color: white;
+	}
+
+	.metrics {
+		list-style: none;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 0.7rem;
+		margin: 0;
+		padding: 0;
+	}
+
+	.metrics li {
+		padding: 0.8rem 0.9rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 12px;
+		background: rgba(255, 255, 255, 0.03);
+		font-size: 0.92rem;
+	}
+
+	.metrics strong {
+		display: block;
+		font-size: 1.22rem;
+		color: white;
+	}
+
+	.panel {
+		margin-top: 1.1rem;
+		padding: 1.6rem;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 20px;
+		background: rgba(15, 21, 35, 0.9);
+	}
+
+	.section-head {
+		display: grid;
+		gap: 0.45rem;
+		margin-bottom: 1.2rem;
+	}
+
+	.section-head h2 {
+		font-size: clamp(1.4rem, 3vw, 2.3rem);
+		max-width: 22ch;
+	}
+
+	.grid {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.grid.three {
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+	}
+
+	.grid.three article,
+	.work-card,
+	.steps li,
+	.faq-items details {
+		background: var(--surface-soft);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 14px;
+		padding: 1rem;
+	}
+
+	.grid.three p,
+	.work-card p,
+	.steps li,
+	.faq-items p {
+		color: rgba(236, 241, 255, 0.78);
+	}
+
+	.work-grid {
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
+
+	.work-card {
+		display: grid;
+		gap: 0.9rem;
+	}
+
+	.work-card h3,
+	.grid.three h3 {
+		font-size: 1.05rem;
+		margin-bottom: 0.4rem;
+	}
+
+	.steps {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 0.8rem;
+		padding: 0;
+		list-style: none;
+		margin: 0;
+	}
+
+	.steps strong {
+		color: white;
+	}
+
+	.faq-items {
+		display: grid;
+		gap: 0.7rem;
+	}
+
+	summary {
+		cursor: pointer;
+		font-weight: 700;
+		color: white;
+	}
+
+	.faq-items p {
+		margin-top: 0.6rem;
+	}
+
+	.contact form {
+		display: grid;
+		gap: 0.8rem;
+		max-width: 620px;
+	}
+
+	label {
+		display: grid;
+		gap: 0.35rem;
+		font-weight: 700;
+		font-size: 0.93rem;
+	}
+
+	input,
+	textarea {
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		background: rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		padding: 0.72rem;
+		color: white;
+	}
+
+	button {
+		justify-self: start;
+		background: linear-gradient(120deg, var(--accent), var(--accent-2));
+		color: #070a11;
+		border: 0;
+		padding: 0.68rem 1rem;
+		border-radius: 999px;
+		font-weight: 700;
+		cursor: pointer;
+	}
+
+	#form-status {
+		font-size: 0.9rem;
+		color: rgba(255, 255, 255, 0.85);
+		min-height: 1.2em;
+	}
+
+	@media (max-width: 720px) {
+		.hero,
+		.panel {
+			padding: 1.1rem;
+		}
+	}
+</style>
